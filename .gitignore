@@ -6,3 +6,4 @@ requirement.txt
 b.py
 imp.txt
 /utils
+/__pycache__
