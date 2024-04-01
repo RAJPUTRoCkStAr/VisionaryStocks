@@ -11,21 +11,21 @@ from lotti import lottie_predaccu
 def pred():
     col9,col10 = st.columns(2)
     with col9:
-        st.write("lets make prediction")
+        st.header("Stock Price Prediction and Historical data",divider='rainbow')
+        st.markdown("Welcome to the Stock Price Prediction Tool! This application leverages machine learning techniques to predict future stock prices based on historical data. Enter a stock symbol and select a period to explore historical stock prices and visualize the predicted future prices. The LSTM (Long Short-Term Memory) model is trained on historical data to learn patterns and trends, enabling it to make predictions for future stock prices. Gain valuable insights into potential price movements and explore the dynamics of the stock market. Whether you're an investor, trader, or enthusiast, this tool offers a powerful platform for understanding and forecasting stock price trends. Start predicting now and make informed decisions in the dynamic world of finance!")
     with col10:
         lottie_predaccu
         map = st_lottie(lottie_predaccu,speed=1,reverse=True,loop=True,quality='medium',height=None,width=None,key=None)
-    st.title("lets make a prediction")
     def fetch_historical_data(symbol, period):
         return yf.download(symbol, period=period)
-    st.title('Stock Price Prediction')
+    st.header('Stock Price Prediction',divider='rainbow')
     symbol = st.text_input('Enter Stock Symbol (e.g., AAPL):', 'AAPL')
-    period = st.selectbox('Select Period:', ['1mo', '3mo', '6mo', '1y', '2y'], index=3)
+    period = st.selectbox('Select Period:', ['1 month', '3 month', '6 month', '1 year', '2 year'], index=3)
     data = fetch_historical_data(symbol, period)
     st.subheader('Historical Stock Prices')
     st.line_chart(data['Close'])
     future_period = st.selectbox('Select Future Period:', ['1mo', '3mo', '6mo', '1y', '2y'], index=3)
-    future_period_mapping = {'1mo': 30, '3mo': 90, '6mo': 180, '1y': 365, '2y': 730}
+    future_period_mapping = {'1 month': 30, '3 month': 90, '6 month': 180, '1 year': 365, '2 year': 730}
     future_days = future_period_mapping[future_period]
     scaler = MinMaxScaler(feature_range=(0, 1))
     scaled_data = scaler.fit_transform(np.array(data['Close']).reshape(-1, 1))

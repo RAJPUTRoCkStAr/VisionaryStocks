@@ -16,4 +16,5 @@ lottie_hello = load_lottiefile("lotti/hello.json")
 lottie_map = load_lottiefile("lotti/map.json")
 lottie_predaccu = load_lottiefile("lotti/predaccu.json")
 lottie_report = load_lottiefile("lotti/report.json")
+lottie_me = load_lottiefile("lotti/Me.json")
 
