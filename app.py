@@ -4,7 +4,7 @@ import Home,Company,Explore,Comap,Compre,Comlive
 
 st.set_page_config(
                 page_title="Stock Prediction App",
-                page_icon="👨‍💻",
+                page_icon=":chart_with_upwards_trend:",
                 layout="wide")
 class MultiApp:
     def __init__(self):
@@ -24,7 +24,7 @@ class MultiApp:
                                 'Explore',
                                 'Map',
                                 'Prediction',
-                                'livemarking'
+                                'Stocks'
                                 ],
                                 icons=['house-fill', 'journal','file-bar-graph-fill','geo-alt','graph-up-arrow','diamond-fill'],
                                 menu_icon="cast"
@@ -39,6 +39,6 @@ class MultiApp:
             Comap.map()
         if app == "Prediction":
             Compre.pred()
-        if app == "livemarking":
+        if app == "Stocks":
             Comlive.live()
     run()   

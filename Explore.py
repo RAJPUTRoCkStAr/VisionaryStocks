@@ -7,8 +7,6 @@ import yfinance as yf
 from streamlit_lottie import st_lottie
 from lotti import lottie_exploredata
 def explore():
-    with open('style.css')as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html = True)
 
     current_date = datetime.now()
     current_year = current_date.year
@@ -34,7 +32,7 @@ def explore():
             width=None,
             key=None,
         )
-
+    global stock_symbol
     stock_symbol = st.text_input("Enter the symbol of the company you want to explore")
     st.info("You need to choose starting date ")
     start_date = st.date_input("Start date from which date you want to explore")
@@ -80,47 +78,52 @@ def explore():
             "Country": ticker.info.get("country", "N/A"),
             "Website": ticker.info.get("website", "N/A")
         }
-        st.title(company_info["Name"])
-
-        col3, col4, col5, col6, col7, col8 = st.columns(6, gap="medium")
-
+        st.title("Company Information")
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            st.markdown("**Name:**")
+            st.write(company_info["Name"])
+        with col2:
+            st.markdown("**Symbol:**")
+            st.write(company_info["Symbol"])
         with col3:
-            st.markdown('Symbol')
-            st.write(f"{company_info['Symbol']}")
+            st.markdown("**Industry:**")
+            st.write(company_info["Industry"])
         with col4:
-            st.markdown('Industry')
-            st.write(f"{company_info['Industry']}")
+            st.markdown("**Sector:**")
+            st.write(company_info["Sector"])
+        col5, col6, col7, col8 = st.columns(4)
         with col5:
-            st.markdown('Sector')
-            st.write(f"{company_info['Sector']}")
-        with col6:
-            st.markdown('Market Cap')
+            st.markdown("**Market Cap:**")
             st.write(f"${company_info['Market Cap']:,}")
-        with col7:
-            st.markdown('Previous Close')
+        with col6:
+            st.markdown("**Previous Close:**")
             st.write(f"${company_info['Previous Close']}")
-        with col8:
-            st.markdown('Open')
+        with col7:
+            st.markdown("**Open:**")
             st.write(f"${company_info['Open']}")
-
-        col9, col10, col11, col12,col13,col14 = st.columns(6, gap="medium")
-
-        with col9:
-            st.markdown('Dividend Yield')
+        with col8:
+            st.markdown("**Dividend Yield:**")
             st.write(f"{company_info['Dividend Yield']}")
+        col9, col10, col11, col12 = st.columns(4)
+        with col9:
+            st.markdown("**Currency:**")
+            st.write(company_info["Currency"])
         with col10:
-            st.markdown('Currency')
-            st.write(f"{company_info['Currency']}")
+            st.markdown("**P/E Ratio:**")
+            st.write(company_info["P/E Ratio"])
         with col11:
-            st.markdown('P/E Ratio')
-            st.write(f"{company_info['P/E Ratio']}")
-        with col12:
-            st.markdown('Volume')
+            st.markdown("**Volume:**")
             st.write(f"{company_info['Volume']}")
-        with col13:
-            st.markdown('Website')
-            website = company_info['Website']
-            link = st.link_button("Website",website,use_container_width=True,type="primary")
-        with col14:
-            st.markdown('Country')
+        with col12:
+            st.markdown("**Country:**")
             st.write(f"{company_info['Country']}")
+        st.title("Additional Information")
+        col13, col14 = st.columns(2)
+        with col13:
+            st.markdown("**Website:**")
+            website = company_info['Website']
+            link = st.link_button("Website",website,type="primary")
+        with col14:
+            st.markdown("**Last Updated:**")
+            st.write(current_date.strftime("%Y-%m-%d %H:%M:%S"))

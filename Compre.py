@@ -20,12 +20,12 @@ def pred():
         return yf.download(symbol, period=period)
     st.header('Stock Price Prediction',divider='rainbow')
     symbol = st.text_input('Enter Stock Symbol (e.g., AAPL):', 'AAPL')
-    period = st.selectbox('Select Period:', ['1 month', '3 month', '6 month', '1 year', '2 year'], index=3)
+    period = st.selectbox('Select Period:', ['1m', '3m', '6m', '1y', '2y'], index=3)
     data = fetch_historical_data(symbol, period)
     st.subheader('Historical Stock Prices')
     st.line_chart(data['Close'])
-    future_period = st.selectbox('Select Future Period:', ['1mo', '3mo', '6mo', '1y', '2y'], index=3)
-    future_period_mapping = {'1 month': 30, '3 month': 90, '6 month': 180, '1 year': 365, '2 year': 730}
+    future_period = st.selectbox('Select Future Period:', ['1m', '3m', '6m', '1y', '2y'], index=3)
+    future_period_mapping = {'1m': 30, '3m': 90, '6m': 180, '1y': 365, '2y': 730}
     future_days = future_period_mapping[future_period]
     scaler = MinMaxScaler(feature_range=(0, 1))
     scaled_data = scaler.fit_transform(np.array(data['Close']).reshape(-1, 1))
