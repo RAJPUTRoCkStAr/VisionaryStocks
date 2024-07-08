@@ -35,7 +35,7 @@ To get started, follow these steps:
     ```bash
     pip install -r requirements.txt
     ```
-3. **Run code **:
+3. **Run code**:
     ```bash
     streamlit run app.py
    ```
