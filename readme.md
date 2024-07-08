@@ -36,8 +36,9 @@ To get started, follow these steps:
     pip install -r requirements.txt
     ```
 3. **Run code **:
-    ``bash
+    ```bash
     streamlit run app.py
+   ```
 ## Usage
 
 The project provides several scripts for different stages of the stock price prediction process:
