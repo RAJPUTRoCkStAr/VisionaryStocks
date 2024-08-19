@@ -25,7 +25,7 @@ def map():
             'country': company.info.get('country', 'N/A'),
             'zip': company.info.get('zip', 'N/A'),
         }
-        geolocator = Nominatim(user_agent="my_geocoder")
+        geolocator = Nominatim(user_agent="Stock-Prediction")
         address = f"{company_info['city']}, {company_info['state']}, {company_info['country']}"
         location = geolocator.geocode(address)
         if location:
