@@ -142,11 +142,7 @@ streamlit-folium
 streamlit-lottie
 streamlit-option-menu
 tenacity
-tensorboard
-tensorboard-data-server
 tensorflow
-tensorflow-intel
-tensorflow-io-gcs-filesystem
 termcolor
 terminado
 threadpoolctl

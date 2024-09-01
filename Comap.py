@@ -17,26 +17,4 @@ def map():
         map = st_lottie(lottie_map,speed=1,reverse=True,loop=True,quality='medium',height=None,width=None,key=None)
     
     ticker_symbol = st.text_input("Enter the symbol of the company you want to see on map")
-    if ticker_symbol:
-        company = yf.Ticker(ticker_symbol)
-        company_info = {
-            'city': company.info.get('city', 'N/A'),
-            'state': company.info.get('state', 'N/A'),
-            'country': company.info.get('country', 'N/A'),
-            'zip': company.info.get('zip', 'N/A'),
-        }
-        geolocator = Nominatim(user_agent="Stock-Prediction")
-        address = f"{company_info['city']}, {company_info['state']}, {company_info['country']}"
-        location = geolocator.geocode(address)
-        if location:
-            latitude, longitude = location.latitude, location.longitude
-            st.subheader(f"Your Company Symbol is {ticker_symbol} and country is {company_info['country']} and city is {company_info['city']}")
-            folium_map = folium.Map(location=[latitude, longitude], zoom_start=10, tiles='OpenStreetMap')
-            folium.Marker(
-                [latitude, longitude],
-                popup=f'{ticker_symbol} Headquarters',
-                tooltip='Click for more info'
-                ).add_to(folium_map)
-            folium_static(folium_map)   
-        else:
-            st.write("Coordinates not found for the company's location.") 
+     
