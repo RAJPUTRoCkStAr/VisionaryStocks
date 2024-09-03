@@ -7,6 +7,7 @@ from utils import signup, login,title
 from Dash import dashboard
 from News import news
 from Stocktrends import Stocktre
+import bcrypt
 title()
 # Session state initialization
 if 'logged_in' not in st.session_state:
