@@ -13,6 +13,7 @@ In the fast-paced world of financial markets, staying informed about stock price
 - **Moving Averages**: Analyze trends using moving average indicators.
 - **Interactive Interface**: Explore and interact with data using Plotly charts.
 - **User-Friendly**: Simple and intuitive interface for seamless navigation.
+- **Stock-News**: Get daily News of stocks and other thing related to finance.
 
 ## Technologies Used
 

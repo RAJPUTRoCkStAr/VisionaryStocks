@@ -1,6 +1,6 @@
 import streamlit as st
 import sqlite3
-import Home,Company,Explore,Comap,Compre,Comlive
+import Explore,Compre,Comlive
 from streamlit_option_menu import option_menu
 from utils import extract_name, adapt_date,profilesetting
 import datetime as dt
@@ -19,13 +19,12 @@ def dashboard():
                         options=[
                                 'main',
                                 'Explore',
-                                'Map',
                                 'Prediction',
-                                'Stocks',
+                                'Real Time Stocks',
                                 'Profile Setting',
                                 'Log Out'
                                 ],
-                                icons=['house', 'binoculars', 'map', 'graph-up', 'bar-chart', 'tools','box-arrow-right'],
+                                icons=['house', 'binoculars','graph-up', 'bar-chart', 'tools','box-arrow-right'],
                                 menu_icon="cast"
                         ) 
     if app == "main":
@@ -61,11 +60,9 @@ def dashboard():
 
     if app == "Explore":
             Explore.explore()
-    if app == "Map":
-            Comap.map()
     if app == "Prediction":
             Compre.pred()
-    if app == "Stocks":
+    if app == "Real Time Stocks":
             Comlive.live()
     elif app == "Profile Setting":
         profilesetting()
