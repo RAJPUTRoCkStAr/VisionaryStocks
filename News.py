@@ -21,7 +21,7 @@ def news():
     
     selected = st.selectbox("Select a Category", list(urls.keys()))
     
-    st.markdown(f"<h1 style='text-align: center; color: #2c3e50;'>{selected} Headlines</h1>", unsafe_allow_html=True)
+    st.markdown(f"<h1 style='text-align: center; color:red;'>{selected} Headlines</h1>", unsafe_allow_html=True)
     st.write("---")
 
     url = urls[selected]

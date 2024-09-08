@@ -1,10 +1,9 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 from streamlit_lottie import st_lottie
-from lotti import lottie_company,lottie_hello,lottie_me
+from lotti import lottie_company
 def home():
     st.header("Stock Price Prediction", divider='rainbow')
-    hello = st_lottie(lottie_hello, speed=1, reverse=True, loop=True, quality='medium', height=180, width=180, key=None)
     col1, col2 = st.columns(2)
 
     with col1:

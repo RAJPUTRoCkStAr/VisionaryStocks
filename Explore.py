@@ -190,5 +190,3 @@ def explore():
                             folium_static(folium_map)
                         else:
                             st.warning("Coordinates not found for the company's location.")
-
-explore()
