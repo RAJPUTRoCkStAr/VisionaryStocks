@@ -15,6 +15,9 @@ from streamlit_lottie import st_lottie
 from lotti import lottie_me
 from dotenv import load_dotenv
 load_dotenv()
+import yfinance as yf
+import sqlite3
+import matplotlib.pyplot as plt
 #################################################################################
 def title():
     st.set_page_config(page_title="VisionaryStocks ",layout="wide",page_icon='lotti/logo.png')
@@ -196,7 +199,8 @@ def login():
             else:
                 c.execute('SELECT password FROM users WHERE username = ?', (username,))
                 user_data = c.fetchone()
-                if user_data and bcrypt.checkpw(password.encode('utf-8'), user_data[0]):
+                if user_data and bcrypt.checkpw(password.encode('utf-8'), user_data[0].encode('utf-8')):
+                # if user_data and bcrypt.checkpw(password.encode('utf-8'), user_data[0]):
                     st.session_state.logged_in = True
                     st.session_state.username = username
                     st.session_state.password = password
@@ -205,6 +209,9 @@ def login():
                     st.rerun()
                 else:
                     st.error('Invalid username or password. Please try again.')
+
+################################################################################
+
 ########################################################################################
 def generate_custom_password(length=8):
     characters = string.ascii_letters + string.digits + string.punctuation
@@ -351,40 +358,59 @@ def changepass():
     conn = sqlite3.connect('data/database.db')
     c = conn.cursor()
     
+    # Fetch the username from session
     username = st.session_state.username
     c.execute('SELECT email, password FROM users WHERE username = ?', (username,))
     user_data = c.fetchone()
     
     if user_data:
-        email, current_password = user_data
+        email, hashed_current_password = user_data
         
+        # Ensure that hashed_current_password is bytes
+        if isinstance(hashed_current_password, str):
+            hashed_current_password = hashed_current_password.encode('utf-8')
+        
+        # Create the form for changing the password
         with st.form(key="change_password_form", clear_on_submit=True):
             old_password = st.text_input("Enter your current password", type="password")
             new_password = st.text_input("Enter your new password", type="password")
             confirm_new_password = st.text_input("Confirm your new password", type="password")
             st.caption("New password must be at least 7 characters long and include a combination of uppercase and lowercase letters, numbers, and special characters.")
-            change_password = st.form_submit_button("Change Password",type="primary")
+            change_password = st.form_submit_button("Change Password", type="primary")
             
             if change_password:
-                if old_password != current_password:
+                # Convert old_password (user input) to bytes
+                old_password_bytes = old_password.encode('utf-8')
+                
+                # Check if the old password matches the hashed password in the database
+                if not bcrypt.checkpw(old_password_bytes, hashed_current_password):
                     st.error("Your current password is incorrect. Please try again.")
+                
+                # Check if the new password matches the required format
                 elif not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,}$', new_password):
                     st.error("New password must be at least 7 characters long and contain a mixture of symbols, capital letters, small letters, and numbers.")
-
+                
+                # Check if the new password matches the confirmation password
                 elif new_password != confirm_new_password:
                     st.error("New password and confirmation do not match. Please try again.")
+                
                 else:
-                    c.execute('UPDATE users SET password = ? WHERE username = ?', (new_password, username))
+                    # Hash the new password before saving it
+                    hashed_new_password = bcrypt.hashpw(new_password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+                    
+                    # Update the password in the database
+                    c.execute('UPDATE users SET password = ? WHERE username = ?', (hashed_new_password, username))
                     conn.commit()
+                    
                     st.success("Password changed successfully!")
                     send_password_change_email(email)
+                    
+                    # Update the password in the session state
                     st.session_state.password = new_password
     else:
-
         st.error("User data not found.")
     
     conn.close()
-
 def send_password_change_email(email):
     try:
         smtp_server = 'smtp.gmail.com'
@@ -430,3 +456,6 @@ def profilesetting():
         change_username()
     if selected2 == "Change Password":
         changepass()
+
+
+

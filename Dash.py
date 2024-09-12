@@ -1,6 +1,6 @@
 import streamlit as st
 import sqlite3
-import Explore,Compre,Comlive
+import Explore,Compre,Comlive,portfolio
 from streamlit_option_menu import option_menu
 from utils import extract_name, adapt_date,profilesetting
 import datetime as dt
@@ -12,12 +12,12 @@ def convert_date(date_bytes):
 sqlite3.register_adapter(dt.date, adapt_date)
 sqlite3.register_converter("DATE", convert_date)
 def dashboard():
-    st.write("Under process")
     with st.sidebar:      
             app = option_menu(
                         menu_title="Main Menu",
                         options=[
                                 'main',
+                                'Portfolio',
                                 'Explore',
                                 'Prediction',
                                 'Real Time Stocks',
@@ -57,7 +57,8 @@ def dashboard():
 
         else:
             st.error("No user is logged in.")
-
+    if app == "Portfolio":
+            portfolio.port()
     if app == "Explore":
             Explore.explore()
     if app == "Prediction":
