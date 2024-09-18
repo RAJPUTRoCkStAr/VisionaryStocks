@@ -45,7 +45,7 @@ def display_cards(df):
             if card_idx < len(df):
                 row = df.iloc[card_idx]
                 cols[col_idx].markdown(f"""
-                    <div style="background-color: #f1f1f1; border-radius: 8px; padding: 16px; margin: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <div style="border-radius: 8px; padding: 16px; margin: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                         <h4 style="margin: 0;">{row['Symbol']}</h4>
                         <p><strong>Open Price:</strong> {row['Open Price']}</p>
                         <p><strong>High Price:</strong> {row['High Price']}</p>

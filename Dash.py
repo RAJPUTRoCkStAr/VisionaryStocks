@@ -17,14 +17,13 @@ def dashboard():
                         menu_title="Main Menu",
                         options=[
                                 'main',
-                                'Portfolio',
                                 'Explore',
                                 'Prediction',
                                 'Real Time Stocks',
                                 'Profile Setting',
                                 'Log Out'
                                 ],
-                                icons=['house', 'binoculars','graph-up', 'bar-chart', 'tools','box-arrow-right'],
+                                icons=['house-fill', 'binoculars-fill','graph-up', 'file-bar-graph-fill', 'tools','box-arrow-right'],
                                 menu_icon="cast"
                         ) 
     if app == "main":
@@ -44,21 +43,21 @@ def dashboard():
                     age = today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
                 else:
                     age = "N/A"
-
-                st.markdown(f"<h2 style='text-align: center;'>Personal Information</h2>", unsafe_allow_html=True)
-                st.markdown("<hr style='border-top: 2px solid #bbb;'>", unsafe_allow_html=True)
-                st.markdown(f"**👤 Username:** `{username}`")
-                st.markdown(f"**📧 Email:** `{email}`")
-                st.markdown(f"**🎂 Date of Birth:** `{dob}`")
-                st.markdown(f"**🗓️ Age:** `{age}`")
-                st.markdown("<hr style='border-top: 2px solid #bbb;'>", unsafe_allow_html=True)
+                with st.sidebar:
+                    st.markdown(f"<h2 style='text-align: center;'>Personal Information</h2>", unsafe_allow_html=True)
+                    st.markdown("<hr style='border-top: 2px solid #bbb;'>", unsafe_allow_html=True)
+                    st.markdown(f"**👤 Username:** `{username}`")
+                    st.markdown(f"**📧 Email:** `{email}`")
+                    st.markdown(f"**🎂 Date of Birth:** `{dob}`")
+                    st.markdown(f"**🗓️ Age:** `{age}`")
+                    st.markdown("<hr style='border-top: 2px solid #bbb;'>", unsafe_allow_html=True)
             else:
                 st.error("User data not found.")
 
         else:
             st.error("No user is logged in.")
-    if app == "Portfolio":
-            portfolio.port()
+    
+        portfolio.port()
     if app == "Explore":
             Explore.explore()
     if app == "Prediction":

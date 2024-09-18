@@ -199,7 +199,7 @@ def login():
             else:
                 c.execute('SELECT password FROM users WHERE username = ?', (username,))
                 user_data = c.fetchone()
-                if user_data and bcrypt.checkpw(password.encode('utf-8'), user_data[0].encode('utf-8')):
+                if user_data and bcrypt.checkpw(password.encode('utf-8'), user_data[0]):
                 # if user_data and bcrypt.checkpw(password.encode('utf-8'), user_data[0]):
                     st.session_state.logged_in = True
                     st.session_state.username = username

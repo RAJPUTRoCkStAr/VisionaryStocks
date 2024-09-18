@@ -102,7 +102,11 @@ def pred():
     symbol = st.text_input('Enter Stock Symbol (e.g., AAPL):', 'AAPL', key='stock_symbol')
     period = st.selectbox('Select Historical Data Period:', ['1m', '3m', '6m', '1y', '2y'], index=3, key='data_period')
     data = fetch_historical_data(symbol, period)
-    st.subheader('Historical Stock Prices')
+    st.markdown(
+                f"""
+                <div style='padding: 20px; border-radius: 10px;'>
+                <h2 style='text-align: center;'>Historical Stock Prices</h2>
+                """, unsafe_allow_html=True)
     st.line_chart(data['Close'])
 
     # Define training and testing areas
@@ -122,7 +126,11 @@ def pred():
     forecast_zigzag = add_zigzag_noise(forecast, noise_level=5)
 
     fig = go.Figure()
-
+    st.markdown(
+                f"""
+                <div style='padding: 20px; border-radius: 10px;'>
+                <h2 style='text-align: center;'>Predicted Stock Prices</h2>
+                """, unsafe_allow_html=True)
     fig.add_trace(go.Scatter(x=data.index, y=data['Close'], mode='lines', name='Actual Price', line=dict(color='blue')))
 
     fig.add_trace(go.Scatter(x=train_df.index, y=train_df['Close'], mode='lines', name='Train Data', line=dict(color='blue', dash='solid')))
@@ -131,7 +139,7 @@ def pred():
  
     fig.add_trace(go.Scatter(x=future_dates, y=forecast_zigzag, mode='lines', name='Forecast', line=dict(color='green')))
 
-    fig.update_layout(title=f'Stock Price Prediction with Zigzag Pattern for {symbol}',xaxis_title='Date',yaxis_title='Price',template='plotly_dark')
+    fig.update_layout(title=f'Stock Price Prediction {symbol}',xaxis_title='Date',yaxis_title='Price',template='plotly_dark')
 
     st.plotly_chart(fig)
 

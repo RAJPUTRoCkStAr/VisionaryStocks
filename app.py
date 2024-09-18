@@ -33,14 +33,21 @@ class MultiApp:
                 app = option_menu(
                     menu_title="Main Menu",
                     options=[
-                        'Home',
-                        'Company',
-                        'Stock News',
-                        'Stock Market Trends',
-                        'Login',
-                        'Sign Up'
+                    'Home',
+                    'Company',
+                    'Stock News',
+                    'Stock Market Trends',
+                    'Login',
+                    'Sign Up'
                     ],
-                    icons=['house', 'building', 'newspaper','lock', 'person'],
+                    icons=[
+                        'house-fill',             # Home icon
+                        'building-fill',          # Company icon
+                        'newspaper',         # Stock News icon
+                        'graph-up-arrow',          # Stock Market Trends icon
+                        'box-arrow-in-right',# Login icon
+                        'person-plus-fill'        # Sign Up icon
+                    ],
                     menu_icon="cast"
                 )
 

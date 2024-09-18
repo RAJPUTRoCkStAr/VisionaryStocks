@@ -39,18 +39,16 @@ def explore():
     period, interval = time_range_map[time_range_keys[time_range_options.index(selected_time_range)]]
     
     ticker = st.text_input('Enter Stock Ticker').upper().strip()
-    
-    if ticker:
+    ticker_button = st.button('Explore')
+    if ticker_button:
         stock_data = yf.download(ticker, period=period, interval=interval)
         
         if not stock_data.empty:
-            st.markdown(f"**{ticker.upper()}**")
-            
             with st.container():
                 st.markdown(
-                    """
-                    <div style='background-color:#f0f2f6; padding: 20px; border-radius: 10px;'>
-                        <h2 style='text-align: center;'>Stock Price Summary</h2>
+                    f"""
+                    <div style='padding: 20px; border-radius: 10px;'>
+                        <h2 style='text-align: center;'>Stock Price Summary - {ticker.upper()}</h2>
                     """, unsafe_allow_html=True)
                 st.header(f"{stock_data.Close.iloc[-1]:.2f}")
                 p_d = stock_data.Close.iloc[-1] - stock_data.Open.iloc[0]
@@ -69,7 +67,7 @@ def explore():
                 with st.container():
                     st.markdown(
                         """
-                        <div style='background-color:#f9f9f9; padding: 20px; border-radius: 10px;'>
+                        <div style='padding: 20px; border-radius: 10px;'>
                             <h3 style='text-align: center;'>Performance Metrics</h3>
                             <hr style='border: 1px solid #ccc;'>
                         """, unsafe_allow_html=True)
