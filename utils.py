@@ -27,7 +27,7 @@ def title():
     with open(logo_path, "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read()).decode()
     html_temp =f"""
-        <div style="background-color:{user_color};padding:12px;display:flex;align-items:center;">
+        <div style="background-color:transparent;padding:12px;display:flex;align-items:center;">
             <img src="data:image/png;base64,{encoded_string}" style="width:250px;height:auto;margin-right:20px;">
             <div style="flex-grow:1;text-align:center;">
                 <h1 style="color:white;font-size: 60px;">{title_webapp}</h1>
@@ -39,7 +39,7 @@ def title():
     <style>
 
     [data-testid="stAppViewContainer"] {
-        background-image: url("https://raw.githubusercontent.com/RAJPUTRoCkStAr/Human-activity/main/media/background.gif") !important;
+        background-image: "lotti/bg.gif" !important;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
@@ -53,7 +53,7 @@ def title():
         height: 100vh; /* Ensure sidebar height is the same as the viewport */
     }
     [data-testid="stHeader"] {
-        background-color: rgba(0, 0, 0, 0); /* Transparent header */
+        background-color: transparent; /* Transparent header */
     }
     [data-testid="stToolbar"] {
         right: 2rem;
