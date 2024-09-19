@@ -31,7 +31,7 @@ class MultiApp:
         else:
             with st.sidebar:
                 app = option_menu(
-                    menu_title="Main Menu",
+                    None,
                     options=[
                     'Home',
                     'Company',
@@ -48,7 +48,6 @@ class MultiApp:
                         'box-arrow-in-right',# Login icon
                         'person-plus-fill'        # Sign Up icon
                     ],
-                    menu_icon="cast"
                 )
 
             # Redirect to corresponding page based on menu selection

@@ -21,25 +21,14 @@ import matplotlib.pyplot as plt
 #################################################################################
 def title():
     st.set_page_config(page_title="VisionaryStocks ",layout="wide",page_icon='lotti/logo.png')
-    user_color      = '#000000'
     title_webapp    = "VisionaryStocks"
-    logo_path = "lotti/logo.png"
-    with open(logo_path, "rb") as image_file:
-        encoded_string = base64.b64encode(image_file.read()).decode()
-    html_temp =f"""
-        <div style="background-color:transparent;padding:12px;display:flex;align-items:center;">
-            <img src="data:image/png;base64,{encoded_string}" style="width:250px;height:auto;margin-right:20px;">
-            <div style="flex-grow:1;text-align:center;">
-                <h1 style="color:white;font-size: 60px;">{title_webapp}</h1>
-            </div>
-        </div>  
-    """
-    st.markdown(html_temp, unsafe_allow_html=True)
+    st.markdown(f"<h1 style='text-align: center;color:#ff4b4b;font-size:84px'>{title_webapp}</h1>", unsafe_allow_html=True)
     background_image = """
     <style>
 
     [data-testid="stAppViewContainer"] {
-        background-image: "lotti/bg.gif" !important;
+        background-image: black !important;
+        # background-image: url("https://raw.githubusercontent.com/RAJPUTRoCkStAr/VisionaryStocks/main/data/bg.gif") !important;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;

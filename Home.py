@@ -3,11 +3,10 @@ from streamlit_option_menu import option_menu
 from streamlit_lottie import st_lottie
 from lotti import lottie_company
 def home():
-    st.header("Stock Price Prediction", divider='rainbow')
     col1, col2 = st.columns(2)
 
     with col1:
-        st.header("Purpose of the App")
+        st.markdown(f"<h1 style='text-align: center;color:#ff4b4b;'>Purpose of the App</h1>", unsafe_allow_html=True)
         st.write("This abstract delves into the critical realm of stock price prediction within financial markets. It underscores the utilization of historical data, mathematical frameworks, and machine learning methodologies to anticipate forthcoming movements in stock prices. By scrutinizing factors like market trends, company performance, economic indices, and investor sentiment, predictive models aim to offer insights into potential price shifts. The significance of precise predictions for investors, traders, and financial institutions is emphasized, along with the inherent challenges and complexities in this endeavor. Continuous refinement of algorithms and integration of new data sources are highlighted as avenues to bolster the accuracy and dependability of stock price prediction models. Ultimately, these efforts contribute to informed decision-making within the dynamic landscape of finance.")
 
     with col2:
@@ -17,7 +16,7 @@ def home():
     tab = option_menu(None, ["Overview 🗒️", "Future Enhancements 📈"], orientation="horizontal")
 
     if tab == "Overview 🗒️":
-        st.subheader("Overview 🗒️ & Key Features:")
+        st.markdown(f"<h1 style='text-align: center;color:#ff4b4b;'>Overview 🗒️ & Key Features</h1>", unsafe_allow_html=True)
         st.markdown("Interactive Map Integration: Users can easily locate companies by country or city, providing geographical context to the stock prediction process.")
         st.markdown("Industry Selection: Users can specify the industry they are interested in, refining their search and predictions based on sector-specific data.")
         st.markdown("Comprehensive Company Database: The platform offers a vast database of companies, ensuring users have access to a wide range of options for stock price prediction.")
@@ -26,7 +25,8 @@ def home():
         st.markdown("Advanced Prediction Algorithms: Utilizing cutting-edge machine learning and statistical techniques, the platform generates reliable predictions based on historical data and market trends.")
 
     elif tab == "Future Enhancements 📈":  
-        st.subheader("Future Enhancements: 📈")
+ 
+        st.markdown(f"<h1 style='text-align: center;color:#ff4b4b;'>Future Enhancements 📈</h1>", unsafe_allow_html=True)
         st.markdown("Deep Learning Integration: Incorporate deep learning models, such as recurrent neural networks (RNNs) or transformers, to capture intricate patterns in historical stock data, potentially improving prediction accuracy and robustness.")
         st.markdown("Explainable AI (XAI): Implement explainable AI techniques to provide users with insights into the factors driving stock price predictions, enhancing transparency and trust in the platform's recommendations.")
         st.markdown("Scenario Analysis Tools: Develop tools for scenario analysis, allowing users to simulate the impact of various economic, geopolitical, or industry-specific events on stock prices and portfolio performance.")
