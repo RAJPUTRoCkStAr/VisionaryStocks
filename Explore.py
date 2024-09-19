@@ -16,7 +16,7 @@ def explore():
     current_month = current_date.month
     col1, col2 = st.columns([3, 1])
     with col1:
-        st.header("Discover Company Stock Data Exploration", divider='rainbow')
+        st.markdown(f"<h2 style='text-align: left;color:#ff4b4b;'>Discover Company Stock Data Exploration</h2>", unsafe_allow_html=True)
         st.write(
             "Welcome to the Stock Data Exploration Tool! This interactive application empowers users to delve into historical stock data effortlessly..."
         )

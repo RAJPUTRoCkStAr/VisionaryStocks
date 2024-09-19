@@ -19,7 +19,7 @@ def fetch_gainers():
     if response.status_code == 200:
         try:
             data = response.json().get('legends', [])
-            selected_legend = option_menu("Select a Gainer Legend:", [legend[0] for legend in data],orientation='horizontal')
+            selected_legend = option_menu(None, [legend[0] for legend in data],orientation='horizontal',icons=None)
             if selected_legend:
                 table = [{
                     "Symbol": item['symbol'],
@@ -46,12 +46,12 @@ def display_cards(df):
                 row = df.iloc[card_idx]
                 cols[col_idx].markdown(f"""
                     <div style="border-radius: 8px; padding: 16px; margin: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                        <h4 style="margin: 0;">{row['Symbol']}</h4>
-                        <p><strong>Open Price:</strong> {row['Open Price']}</p>
-                        <p><strong>High Price:</strong> {row['High Price']}</p>
-                        <p><strong>Low Price:</strong> {row['Low Price']}</p>
-                        <p><strong>Previous Close:</strong> {row['Previous Price']}</p>
-                        <p><strong>Change (%):</strong> {row['Change (%)']}</p>
+                        <h4 style="margin: 0;color:#f09707">{row['Symbol']}</h4>
+                        <h5 style="color:yellow;"><strong>Open Price:</strong> {row['Open Price']}</h5>
+                        <h5 style="color:#07f00b;"><strong>High Price:</strong> {row['High Price']}</h5>
+                        <h5 style="color:red;"><strong>Low Price:</strong> {row['Low Price']}</h5>
+                        <h5 style="color:#07b6f0;"><strong>Previous Close:</strong> {row['Previous Price']}</h5>
+                        <h5 style="color:#b207f0;"><strong>Change (%):</strong> {row['Change (%)']}</h5>
                     </div>
                 """, unsafe_allow_html=True)
 
@@ -142,7 +142,7 @@ def fetch_indices(indices):
 
 def display_losers():
     st.header("Top Losers")
-    with st.spinner('Scraping data...'):
+    with st.spinner('Getting your data...🤖'):
         data = scrape_top_losers()
         if data:
             companies = [item['Company'] for item in data]
@@ -173,12 +173,12 @@ def display_ca(df):
                 cols[col_idx].markdown(f"""
                     <div style="background-color: #E6E6FA; border-radius: 8px; padding: 16px; margin: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                         <h4 style="margin: 0;">{row['Symbol']}</h4>
-                        <p><strong>Open Price:</strong> {row['Open Price']}</p>
-                        <p><strong>High Price:</strong> {row['High Price']}</p>
-                        <p><strong>Low Price:</strong> {row['Low Price']}</p>
-                        <p><strong>Previous Close:</strong> {row['Previous Price']}</p>
-                        <p><strong>Close:</strong> {row['Close']}</p>
-                        <p><strong>Change (%):</strong> {row['Change (%)']}</p>
+                        <p style="color:yellow"><strong>Open Price:</strong> {row['Open Price']}</p>
+                        <p style="color:#07f00b"><strong>High Price:</strong> {row['High Price']}</p>
+                        <p style="color:red"><strong>Low Price:</strong> {row['Low Price']}</p>
+                        <p style="color:orange"><strong>Previous Close:</strong> {row['Previous Price']}</p>
+                        <p style="color:#07b6f0"><strong>Close:</strong> {row['Close']}</p>
+                        <p style="color:#b207f0"><strong>Change (%):</strong> {row['Change (%)']}</p>
                     </div>
                 """, unsafe_allow_html=True)
 
@@ -208,10 +208,11 @@ def display_car(data, data_type):
             )
 
 def Stocktre():
-    st.title("Stock Market Dashboard")
+    st.title("")
+    st.markdown(f"<h1 style='text-align: center;color:#ff4b4b;'>Stock Market Trends</h1>", unsafe_allow_html=True)
     
     st.markdown("<div class='custom-header'>Top Gainers</div>", unsafe_allow_html=True)
-    app = option_menu("trends",options=['Gainers','Loosers','Indices'],menu_icon="cast",orientation='horizontal')
+    app = option_menu(None,options=['Gainers','Loosers','Indices'],orientation='horizontal')
     if app == 'Gainers':
         fetch_gainers()
     elif app == 'Loosers':

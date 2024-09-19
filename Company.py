@@ -12,11 +12,8 @@ def company():
         st_lottie(lottie_company, speed=1, reverse=True, loop=True, quality='medium', height=150, width=None, key=None)
     st.subheader("Explore Companies by Industry")
     df = pd.read_csv("fdata.csv", encoding='latin-1')
-    selected_industry = st.selectbox("Select an industry", df['Industry'].unique(), index=0)
+    selected_industry = st.selectbox("Select an industry", df['Industry'].unique(), index=0,label_visibility="hidden")
     if selected_industry:
         selected_data = df[df['Industry'] == selected_industry][['Company Name', 'Symbol', 'Market Cap']]
-        selected_data.reset_index(drop=True, inplace=True)
-        selected_data.index += 1
-        st.subheader(f"Industry: {selected_industry}")
-        st.write("Companies in the selected industry:")
-        st.table(selected_data)
+        st.markdown(f"<h2 style='text-align: center;color:#ff4b4b;'>Companies related to <mark style='background-color: blue;color:#ff4b4b'>{selected_industry}</mark> industry are 👇:</h2>", unsafe_allow_html=True)
+        st.dataframe(selected_data,hide_index=True,use_container_width=True,height=1200)

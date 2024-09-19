@@ -75,11 +75,12 @@ def live():
 
     col11, col12 = st.columns(2)
     with col11:
+        st.markdown(f"<h2 style='text-align: left;color:#ff4b4b;'>Real-Time Stock Price Visualization</h2>", unsafe_allow_html=True)
         st.write("In the digital realm of financial markets, real-time data streams provide a window into the ever-changing landscape of stock prices. Amidst the flow of information, an individual embarks on a journey to navigate the complexities of market dynamics. Fueled by a desire for insight, they harness the power of technology to visualize trends and patterns. Through the interplay of candlestick charts and moving averages, they seek to uncover the underlying rhythms of market behavior. As the data unfolds, each fluctuation becomes a thread in the tapestry of market sentiment. In this quest for understanding, they embrace the challenge of deciphering signals amidst the noise. And in the dance between data and interpretation, they find both the exhilaration of discovery and the humbling reminder of the unpredictable nature of markets.")
     with col12:
         st_lottie(lottie_report, speed=1, reverse=True, loop=True, quality='medium', height=None, width=None, key=None)
 
-    st.title('Real-Time Stock Price Visualization')
+
 
     option = st.text_input('Enter a Stock Symbol', value='SPY').upper()
     chart_type = st.selectbox("Select chart type:", ["Line Chart", "Candlestick Chart", "Bar Chart", "OHLC Chart"])

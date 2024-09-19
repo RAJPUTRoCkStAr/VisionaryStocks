@@ -27,8 +27,8 @@ def title():
     <style>
 
     [data-testid="stAppViewContainer"] {
-        background-image: black !important;
-        # background-image: url("https://raw.githubusercontent.com/RAJPUTRoCkStAr/VisionaryStocks/main/data/bg.gif") !important;
+        # background-image: black !important;
+        background-image: url("https://raw.githubusercontent.com/RAJPUTRoCkStAr/VisionaryStocks/main/data/bg.gif") !important;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
@@ -106,7 +106,7 @@ def signup():
     c = conn.cursor()
     today = dt.datetime.now()
     max_date = today - dt.timedelta(days=18*365)
-    st.markdown(f"<h2 style='text-align: center;color:green'>Sign Up for Stock</h2>", unsafe_allow_html=True)
+    st.markdown(f"<h2 style='text-align: center;color:#ff4b4b'>Sign Up for VisionaryStocks</h2>", unsafe_allow_html=True)
     with st.form(key="signup_form", clear_on_submit=True):
         name = st.text_input("Enter your name")
         email = st.text_input("Enter your email address")
@@ -189,12 +189,12 @@ def send_thank_you_email(email, username, password, dob):
 def login():
     conn = sqlite3.connect('data/database.db')
     c = conn.cursor()
-    st.markdown(f"<h2 style='text-align: center;color:green'>Log in Here 👇 for  Stocks</h2>", unsafe_allow_html=True)
+    st.markdown(f"<h2 style='text-align: center;color:#ff4b4b'>Log in Here 👇 for  VisionaryStocks</h2>", unsafe_allow_html=True)
     with st.form(key="login_form", clear_on_submit=True):
         username = st.text_input("Enter your username")
         password = st.text_input("Enter your password", type="password")
-        forgot_password_button = st.form_submit_button("Forgot Password")
         login_button = st.form_submit_button("Login")
+        forgot_password_button = st.form_submit_button("Forgot Password")
         
         if forgot_password_button:
             if username:
@@ -466,7 +466,7 @@ def send_password_change_email(email):
 ##########################################################################
 ##################################################################################
 def profilesetting():
-    st.markdown(f"<h2 style='text-align: center;color:green'>Profile Setting</h2>", unsafe_allow_html=True)
+    st.markdown(f"<h2 style='text-align: center;color:#ff4b4b'>Profile Setting</h2>", unsafe_allow_html=True)
     selected2 = option_menu(None, ["Change Username", "Change Password"], 
     icons=['fill-person-fill', "passport"], 
     menu_icon="cast", default_index=0, orientation="horizontal")
