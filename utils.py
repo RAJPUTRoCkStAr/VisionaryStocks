@@ -35,6 +35,35 @@ def title():
         </div>  
     """
     st.markdown(html_temp, unsafe_allow_html=True)
+    background_image = """
+    <style>
+
+    [data-testid="stAppViewContainer"] {
+        background-image: url("https://raw.githubusercontent.com/RAJPUTRoCkStAr/Human-activity/main/media/background.gif") !important;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed; /* Keep the background fixed during scrolling */
+        height: 100vh; /* Full viewport height */
+        width: 100vw; /* Full viewport width */
+        overflow: hidden; /* Prevent scrolling for the container */
+    }
+    [data-testid="stSidebar"] {
+        background-color: transparent;  /* Adds transparency to the sidebar */
+        height: 100vh; /* Ensure sidebar height is the same as the viewport */
+    }
+    [data-testid="stHeader"] {
+        background-color: rgba(0, 0, 0, 0); /* Transparent header */
+    }
+    [data-testid="stToolbar"] {
+        right: 2rem;
+    }
+    button[kind="sidebar"] {
+        background-color:transparent;  /* Ensures sidebar button is transparent */
+    }
+    </style>
+    """
+    st.markdown(background_image, unsafe_allow_html=True)
 
 #     st.markdown("""
 #     <style>
