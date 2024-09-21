@@ -1,3 +1,6 @@
+numpy==1.24.4 
+pandas==1.5.3 
+pandas_ta==0.3.14b0
 altair
 attrs
 bcrypt
@@ -26,11 +29,8 @@ MarkupSafe
 mdurl
 multitasking
 narwhals
-numpy
 opencv-python
 packaging
-pandas
-pandas_ta
 patsy
 peewee
 pillow
