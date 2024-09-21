@@ -3,7 +3,6 @@ import pandas as pd
 import yfinance as yf
 import pandas_ta as ta
 import sqlite3
-import matplotlib.pyplot as plt
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 from streamlit_option_menu import option_menu

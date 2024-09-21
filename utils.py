@@ -17,7 +17,7 @@ from dotenv import load_dotenv
 load_dotenv()
 import yfinance as yf
 import sqlite3
-import matplotlib.pyplot as plt
+
 #################################################################################
 def title():
     st.set_page_config(page_title="VisionaryStocks ",layout="wide",page_icon='lotti/logo.png')
