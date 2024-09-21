@@ -1,6 +1,5 @@
 numpy
 pandas 
-pandas_ta
 altair
 attrs
 bcrypt
