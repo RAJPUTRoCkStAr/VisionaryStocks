@@ -53,7 +53,7 @@ The project provides several scripts for different stages of the stock price pre
 4. **Prediction**
 5. **Find Company located at**
 6. **There is an interactive chart**
-   For live usage and demo, visit [Stock Price Prediction](https://visionarystocks.streamlit.app/).
+   For live usage and demo, visit [Visionary Stocks](https://visionarystocks.streamlit.app/).
 
 ## License
 
