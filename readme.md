@@ -1,4 +1,4 @@
-# Real-Time Stock Price Visualization
+# VisionaryStocks
 
 Welcome to Real-Time Stock Price Visualization! This project provides a dynamic and interactive way to visualize stock price data in real-time, empowering users to explore market trends and patterns effortlessly.
 
@@ -27,19 +27,22 @@ In the fast-paced world of financial markets, staying informed about stock price
 To get started, follow these steps:
 
 1. **Clone this repository**:
-    ```bash
-    git clone https://github.com/RAJPUTRoCkStAr/Stock-Prediction
-    cd real-time-stock-price-visualization
-    ```
 
-2. **Install the required dependencies**:
-    ```bash
-    pip install -r requirements.txt
-    ```
-3. **Run code**:
-    ```bash
-    streamlit run app.py
+   ```bash
+   git clone https://github.com/RAJPUTRoCkStAr/Stock-Prediction
+   cd real-time-stock-price-visualization
    ```
+2. **Install the required dependencies**:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. **Run code**:
+
+   ```bash
+   streamlit run app.py
+   ```
+
 ## Usage
 
 The project provides several scripts for different stages of the stock price prediction process:
@@ -50,7 +53,7 @@ The project provides several scripts for different stages of the stock price pre
 4. **Prediction**
 5. **Find Company located at**
 6. **There is an interactive chart**
-For live usage and demo, visit [Stock Price Prediction](https://stock-prediction-tech.streamlit.app/).
+   For live usage and demo, visit [Stock Price Prediction](https://visionarystocks.streamlit.app/).
 
 ## License
 

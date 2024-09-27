@@ -46,10 +46,10 @@ def dashboard():
                 with st.sidebar:
                     st.markdown(f"<h2 style='text-align: center;'>Personal Information</h2>", unsafe_allow_html=True)
                     st.markdown("<hr style='border-top: 2px solid #bbb;'>", unsafe_allow_html=True)
-                    st.markdown(f"<h4 style='color:white'>👤 Username: {username}</h4>",unsafe_allow_html=True)
-                    st.markdown(f"<h4 style='color:white'>📧 Email: {email}</h4>",unsafe_allow_html=True)
-                    st.markdown(f"<h4 style='color:white'>🎂 Date of Birth: {dob}</h4>",unsafe_allow_html=True)
-                    st.markdown(f"<h4 style='color:white'>🗓️ Age: {age}</h4>",unsafe_allow_html=True)
+                    st.markdown(f"<h2 style='color:white'>👤 Username: {username}</h2>",unsafe_allow_html=True)
+                    st.markdown(f"<h3 style='color:white'>📧 Email: {email}</h3>",unsafe_allow_html=True)
+                    st.markdown(f"<h2 style='color:white'>🎂 Date of Birth: {dob}</h2>",unsafe_allow_html=True)
+                    st.markdown(f"<h2 style='color:white'>🗓️ Age: {age}</h2>",unsafe_allow_html=True)
                     st.markdown("<hr style='border-top: 2px solid #bbb;'>", unsafe_allow_html=True)
             else:
                 st.error("User data not found.")

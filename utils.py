@@ -170,7 +170,7 @@ def send_thank_you_email(email, username, password, dob):
                 <footer>
                     <p style="font-size: 0.9em; color: #777;">
                         &copy; 2024 Our Company IAA. All rights reserved.<br>
-                        <a href="http://example.com" style="color: #1a73e8; text-decoration: none;">Visit our website</a>
+                        <a href="https://visionarystocks.streamlit.app/" style="color: #1a73e8; text-decoration: none;">Visit our website</a>
                     </p>
                 </footer>
             </div>
@@ -375,20 +375,14 @@ def send_username_change_email(email, new_username):
 def changepass():
     conn = sqlite3.connect('data/database.db')
     c = conn.cursor()
-    
-    # Fetch the username from session
     username = st.session_state.username
     c.execute('SELECT email, password FROM users WHERE username = ?', (username,))
     user_data = c.fetchone()
     
     if user_data:
         email, hashed_current_password = user_data
-        
-        # Ensure that hashed_current_password is bytes
         if isinstance(hashed_current_password, str):
             hashed_current_password = hashed_current_password.encode('utf-8')
-        
-        # Create the form for changing the password
         with st.form(key="change_password_form", clear_on_submit=True):
             old_password = st.text_input("Enter your current password", type="password")
             new_password = st.text_input("Enter your new password", type="password")
@@ -397,33 +391,24 @@ def changepass():
             change_password = st.form_submit_button("Change Password", type="primary")
             
             if change_password:
-                # Convert old_password (user input) to bytes
                 old_password_bytes = old_password.encode('utf-8')
                 
-                # Check if the old password matches the hashed password in the database
                 if not bcrypt.checkpw(old_password_bytes, hashed_current_password):
                     st.error("Your current password is incorrect. Please try again.")
                 
-                # Check if the new password matches the required format
                 elif not re.match(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,}$', new_password):
                     st.error("New password must be at least 7 characters long and contain a mixture of symbols, capital letters, small letters, and numbers.")
                 
-                # Check if the new password matches the confirmation password
                 elif new_password != confirm_new_password:
                     st.error("New password and confirmation do not match. Please try again.")
                 
                 else:
-                    # Hash the new password before saving it
                     hashed_new_password = bcrypt.hashpw(new_password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
-                    
-                    # Update the password in the database
                     c.execute('UPDATE users SET password = ? WHERE username = ?', (hashed_new_password, username))
                     conn.commit()
                     
                     st.success("Password changed successfully!")
                     send_password_change_email(email)
-                    
-                    # Update the password in the session state
                     st.session_state.password = new_password
     else:
         st.error("User data not found.")
@@ -468,7 +453,7 @@ def send_password_change_email(email):
 def profilesetting():
     st.markdown(f"<h2 style='text-align: center;color:#ff4b4b'>Profile Setting</h2>", unsafe_allow_html=True)
     selected2 = option_menu(None, ["Change Username", "Change Password"], 
-    icons=['fill-person-fill', "passport"], 
+    icons=['person-badge-fill', "passport"], 
     menu_icon="cast", default_index=0, orientation="horizontal")
     if selected2 == "Change Username":
         change_username()
