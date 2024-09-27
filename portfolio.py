@@ -120,7 +120,7 @@ def port():
                     stock_data = stock.history(period="5y")
 
                     # Stock ticker as a header
-                    st.markdown(f"<h2 style='text-align: center; color: #1976D2;'>{ticker.upper()}</h2>", unsafe_allow_html=True)
+                    st.markdown(f"<h2 style='text-align: center; color: #5795f2;'>{ticker.upper()}</h2>", unsafe_allow_html=True)
 
                     # Create columns for layout
                     stock_info_col, chart_col = st.columns([1, 3])

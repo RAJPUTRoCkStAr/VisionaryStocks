@@ -2,6 +2,7 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 from streamlit_lottie import st_lottie
 from lotti import lottie_company
+from utils import contactus
 def home():
     col1, col2 = st.columns(2)
 
@@ -13,7 +14,7 @@ def home():
         lottie_company
         comapny = st_lottie(lottie_company, speed=1, reverse=True, loop=True, quality='medium', height=None, width=None, key=None)
 
-    tab = option_menu(None, ["Overview 🗒️", "Future Enhancements 📈"], orientation="horizontal")
+    tab = option_menu(None, ["Overview 🗒️", "Future Enhancements 📈","Contact us📝"], orientation="horizontal")
 
     if tab == "Overview 🗒️":
         st.markdown(f"<h1 style='text-align: center;color:#ff4b4b;'>Overview 🗒️ & Key Features</h1>", unsafe_allow_html=True)
@@ -36,7 +37,8 @@ def home():
         st.markdown("Customizable Machine Learning Pipelines: Empower users to customize machine learning pipelines by selecting from a range of algorithms, feature engineering techniques, and hyperparameters, catering to individual preferences and requirements.")
         st.markdown("Social Sentiment Analysis: Enhance sentiment analysis capabilities by incorporating social media data from platforms like Twitter, Reddit, and StockTwits, providing users with real-time insights into market sentiment and investor behavior.")
         st.write("Stay tuned for these transformative updates!")
-
+    if tab == "Contact us📝":
+        contactus()
 
             
 

@@ -1,26 +1,36 @@
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from streamlit_option_menu import option_menu
+from Stsocialicon import SocialMediaIcons
+from dotenv import load_dotenv
 import streamlit as st
-import random
-import string
+import datetime as dt
+import base64
 import smtplib
 import sqlite3
+import bcrypt  
+import random
+import string
 import re
 import os
-import datetime as dt
-import bcrypt  
-from streamlit_lottie import st_lottie
-from lotti import lottie_me
-from dotenv import load_dotenv
-import sqlite3
 load_dotenv()
 
 #################################################################################
 def title():
     st.set_page_config(page_title="VisionaryStocks ",layout="wide",page_icon='lotti/logo.png')
     title_webapp    = "VisionaryStocks"
-    st.markdown(f"<h1 style='text-align: center;color:#ff4b4b;font-size:84px'>{title_webapp}</h1>", unsafe_allow_html=True)
+    logo_path = "lotti/logo.png"
+    with open(logo_path, "rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read()).decode()
+    html_temp =f"""
+        <div style="background-color:transparent;padding:12px;display:flex;align-items:center;">
+            <img src="data:image/png;base64,{encoded_string}" style="width:280px;height:auto;margin-right:20px;">
+            <div style="flex-grow:1;text-align:center;">
+                <h1 style="color:white;font-size: 60px;">{title_webapp}</h1>
+            </div>
+        </div>  
+    """
+    st.markdown(html_temp, unsafe_allow_html=True)
     background_image = """
     <style>
 
@@ -284,11 +294,14 @@ def contactus():
         st.markdown("Driven by a thirst for knowledge and a commitment to continuous learning, I actively seek out opportunities to expand my expertise and stay at the forefront of technological advancements. Whether it's experimenting with new frameworks and libraries or contributing to open-source projects, I'm always eager to push the boundaries of what's possible in the world of software development.")
         st.markdown("Thank you for joining me on this exciting journey as I explore the intersection of data science, full-stack development, and beyond. Together, let's build innovative solutions that make a meaningful impact in the digital landscape.")
         st.markdown("Below are the links to connect with me")
-        lottie_me
-        Me = st_lottie(lottie_me, speed=1, reverse=True, loop=True, quality='medium', height=None, width=None, key=None)
-        st.link_button("Linkedin", "https://www.linkedin.com/in/sumit-singh-773921262/", use_container_width=True,type="primary")
-        st.link_button("Kaggle", "https://www.kaggle.com/sumitkumarsingh22002", use_container_width=True,type="primary")
-        st.link_button("Github", "https://github.com/RAJPUTRoCkStAr", use_container_width=True,type="primary")
+        links = [
+        "https://www.linkedin.com/in/sumit-singh-773921262/",
+        "https://www.kaggle.com/sumitkumarsingh22002",
+
+        ] 
+        sizes = ['lg','lg'] 
+        SocialMediaIcons(social_media_links=links, sizes=sizes).generate_icons()
+        
 ################################################################################
 #changer username
 def change_username():
@@ -457,6 +470,31 @@ def profilesetting():
         change_username()
     if selected2 == "Change Password":
         changepass()
+###############################################################################################
+admin_users = st.secrets["admin"].get("users", [])
+
+def authenticate(username, password):
+    for user in admin_users:
+        if user["username"] == username and user["password"] == password:
+            return True
+    return False
+
+def admin_login():
+    st.markdown("<h2 style='text-align: center;color:white'>Login for Admin</h2>", unsafe_allow_html=True)
+    username = st.text_input("Username",key="username_admin")
+    password = st.text_input("Password", type="password")
+
+    if st.button("Login"):
+        if authenticate(username, password):
+            st.session_state['log_in'] = True
+            st.session_state['page'] = "Admin"
+            st.session_state['authenticated'] = True
+            st.success("Logged in successfully!")
+            st.rerun()  
+        else:
+            st.error("Invalid credentials")
+    else:
+        st.info("Please log in to see Database")
 
 
 
