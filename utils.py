@@ -7,16 +7,14 @@ import string
 import smtplib
 import sqlite3
 import re
-import base64
 import os
 import datetime as dt
 import bcrypt  
 from streamlit_lottie import st_lottie
 from lotti import lottie_me
 from dotenv import load_dotenv
-load_dotenv()
-import yfinance as yf
 import sqlite3
+load_dotenv()
 
 #################################################################################
 def title():
