@@ -150,10 +150,7 @@ def display_losers():
             stock_data = fetch_stock_data(tickers)
             df = pd.DataFrame(stock_data).T.reset_index()
             df.columns = ['Company', 'Open Price', 'High Price', 'Low Price', 'Previous Price', 'Close', 'Change (%)']
-
-           
             df.rename(columns={'Company': 'Symbol'}, inplace=True)
-
             st.write("### Top Losers Data")
             display_ca(df)
         else:
@@ -171,7 +168,7 @@ def display_ca(df):
             if card_idx < len(df):
                 row = df.iloc[card_idx]
                 cols[col_idx].markdown(f"""
-                    <div style="background-color: #E6E6FA; border-radius: 8px; padding: 16px; margin: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <div style="border-radius: 8px; padding: 16px; margin: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                         <h4 style="margin: 0;">{row['Symbol']}</h4>
                         <p style="color:yellow"><strong>Open Price:</strong> {row['Open Price']}</p>
                         <p style="color:#07f00b"><strong>High Price:</strong> {row['High Price']}</p>
@@ -210,9 +207,8 @@ def display_car(data, data_type):
 def Stocktre():
     st.title("")
     st.markdown(f"<h1 style='text-align: center;color:#ff4b4b;'>Stock Market Trends</h1>", unsafe_allow_html=True)
-    
-    st.markdown("<div class='custom-header'>Top Gainers</div>", unsafe_allow_html=True)
-    app = option_menu(None,options=['Gainers','Loosers','Indices'],orientation='horizontal')
+
+    app = option_menu(None,options=['Gainers','Loosers','Indices'],icons=['graph-up-arrow','graph-down-arrow','pie-chart'],orientation='horizontal')
     if app == 'Gainers':
         fetch_gainers()
     elif app == 'Loosers':

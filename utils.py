@@ -28,7 +28,7 @@ def title():
 
     [data-testid="stAppViewContainer"] {
         # background-image: black !important;
-        background-image: url("https://raw.githubusercontent.com/RAJPUTRoCkStAr/VisionaryStocks/main/data/bg.gif") !important;
+        background-image: url("https://raw.githubusercontent.com/RAJPUTRoCkStAr/VisionaryStocks/main/lotti/bg.gif") !important;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
